@@ -40,8 +40,8 @@ handleHostFamilies = (hostFamilyData) => {
 
 componentDidMount = () => {
   axios.get(aupairsURL, {crossDomain: true}, {withCredentials: true})
-    .then((response) => console.log(response))
-    //this.handleAuPairs(response.data))
+    .then((response) => this.handleAuPairs(response.data.aupair))
+    
 
   axios.get(hostFamiliesURL, {crossDomain: true}, {withCredentials: true})
     .then(response => this.handleHostFamilies(response.data))
