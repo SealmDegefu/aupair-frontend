@@ -17,8 +17,8 @@ import CreateListing from './components/CreateListing';
 import axios from 'axios';
 
 
-const aupairsURL = "http://localhost:9292/aupairs";
-const hostFamiliesURL = "http://localhost:9292/hostFamilies";
+const aupairsURL = "http://localhost:9292/aupair";
+const hostFamiliesURL = "http://localhost:9292/hostFamily";
 
 function App() {
 
@@ -40,14 +40,14 @@ handleHostFamilies = (hostFamilyData) => {
 
 componentDidMount = () => {
   axios.get(aupairsURL)
-    .then((response) => this.handleAuPairs(response.data.data))
+    .then((response) => this.handleAuPairs(response.data))
 
   axios.get(favoritesURL)
     .then(response => this.handleFavoritesData(response.data))
 }
-  fetch("http://localhost:9292/test")
-  .then((res) => res.json())
-  .then(console.log); 
+  // fetch("http://localhost:9292/test")
+  // .then((res) => res.json())
+  // .then(console.log); 
 
 
 
