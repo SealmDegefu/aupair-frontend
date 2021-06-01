@@ -6,8 +6,7 @@ import HostFamily from './containers/HostFamily';
 import {
   BrowserRouter as Router,
   Switch,
-  Route,
-  Link
+  Route
 } from "react-router-dom";
 import Header from './components/Navbar/Header';
 import Footer from './components/Footer';
@@ -20,7 +19,7 @@ import axios from 'axios';
 const aupairsURL = "http://localhost:9292/aupair";
 const hostFamiliesURL = "http://localhost:9292/hostFamily";
 
-function App() {
+class App extends React.Component {
 
   state = {
     aupairs: [],
@@ -39,10 +38,10 @@ handleHostFamilies = (hostFamilyData) => {
 }
 
 componentDidMount = () => {
-  axios.get(aupairsURL)
+  axios.get(aupairsURL, {withCredentials:true})
     .then((response) => this.handleAuPairs(response.data))
 
-  axios.get(hostFamiliesURL)
+  axios.get(hostFamiliesURL,{withCredentials:true})
     .then(response => this.handleHostFamilies(response.data))
 }
   // fetch("http://localhost:9292/test")
@@ -50,7 +49,7 @@ componentDidMount = () => {
   // .then(console.log); 
 
 
-
+render(){
   return (
     <Router>
    <Navbar />
@@ -66,7 +65,7 @@ componentDidMount = () => {
     <Route path="/HostFamily">
     <HostFamily hostFamilyData={this.state.hostFamilies}/>
     </Route>
-    <Route path="/AuPair">
+    <Route path="/Au-pair">
     <AuPair auPairData={this.state.aupairs}/>
     </Route>
     <Route path="/create-listing">
@@ -75,6 +74,7 @@ componentDidMount = () => {
     </Switch>
    </Router>
   );
+}
 }
 
 export default App;
