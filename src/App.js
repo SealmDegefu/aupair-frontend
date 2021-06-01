@@ -63,11 +63,11 @@ componentDidMount = () => {
     <Route path="/about">
     <About />
     </Route>
-    <Route path="/host-families">
-    <HostFamily />
+    <Route path="/HostFamily">
+    <HostFamily hostFamilyData={this.state.hostFamilies}/>
     </Route>
-    <Route path="/Au-pair">
-    <AuPair />
+    <Route path="/AuPair">
+    <AuPair auPairData={this.state.aupairs}/>
     </Route>
     <Route path="/create-listing">
     <CreateListing />

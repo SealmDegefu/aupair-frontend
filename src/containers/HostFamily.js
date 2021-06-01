@@ -6,7 +6,7 @@ class HostFamily extends React.Component {
     
     render(){
         return (
-        <div className="card" key={this.props.family.id}>
+        <div className="card" key={this.props.HostFamily.id}>
             <img 
                 className="family-img"
                 src={this.props.family.images} 
