@@ -42,8 +42,8 @@ componentDidMount = () => {
   axios.get(aupairsURL)
     .then((response) => this.handleAuPairs(response.data))
 
-  axios.get(favoritesURL)
-    .then(response => this.handleFavoritesData(response.data))
+  axios.get(hostFamiliesURL)
+    .then(response => this.handleHostFamilies(response.data))
 }
   // fetch("http://localhost:9292/test")
   // .then((res) => res.json())
