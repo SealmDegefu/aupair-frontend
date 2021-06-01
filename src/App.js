@@ -16,7 +16,7 @@ import CreateListing from './components/CreateListing';
 import axios from 'axios';
 
 
-const aupairsURL = "http://localhost:9292/aupair";
+const aupairsURL = "http://localhost:9292/Aupair";
 const hostFamiliesURL = "http://localhost:9292/hostFamily";
 
 class App extends React.Component {
@@ -29,6 +29,7 @@ class App extends React.Component {
 handleAuPairs = (auPairData) => {
   this.setState({
     aupairs: auPairData
+  
   })
 }
 handleHostFamilies = (hostFamilyData) => {
@@ -38,10 +39,11 @@ handleHostFamilies = (hostFamilyData) => {
 }
 
 componentDidMount = () => {
-  axios.get(aupairsURL, {withCredentials:true})
-    .then((response) => this.handleAuPairs(response.data))
+  axios.get(aupairsURL, {crossDomain: true}, {withCredentials: true})
+    .then((response) => console.log(response))
+    //this.handleAuPairs(response.data))
 
-  axios.get(hostFamiliesURL,{withCredentials:true})
+  axios.get(hostFamiliesURL, {crossDomain: true}, {withCredentials: true})
     .then(response => this.handleHostFamilies(response.data))
 }
   // fetch("http://localhost:9292/test")

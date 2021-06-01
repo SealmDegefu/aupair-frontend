@@ -19,7 +19,7 @@ export const NavLink = styled(Link)`
 	height: 100%;
 	cursor: pointer;
 
-	&.active {
+	&:active {
 		color: orange;
 	}
 `
