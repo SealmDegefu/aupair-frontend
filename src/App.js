@@ -3,6 +3,7 @@ import './App.css';
 import Navbar from './components/Navbar/index';
 import AuPair from './containers/AuPair';
 import HostFamily from './containers/HostFamily';
+import AuPairFavorites from './containers/AuPairFavorites';
 import {
   BrowserRouter as Router,
   Switch,
@@ -21,12 +22,14 @@ import axios from 'axios';
 const aupairsURL = "http://localhost:9292/Aupair";
 const hostFamiliesURL = "http://localhost:9292/Family";
 const listingURL = "http://localhost:9292/Listing"
+const favoritesURL = "http://localhost:9292/Favorite"
 
 class App extends React.Component {
 
   state = {
     aupairs: [],
     hostFamilies: [],
+    favorites: [],
     listings: [],
     user: {
       name: "",
@@ -56,7 +59,11 @@ handleListing = (listingData) => {
     listings: listingData
   })
 }
-
+handleFavoritesData = (favoritesData) => {
+  this.setState({
+    favorites: favoritesData
+  })
+}
 Login = details => {
  
  if (details.email == this.adminUser.email && details.password == this.adminUser.password){
@@ -78,6 +85,9 @@ componentDidMount = () => {
 
   axios.get(hostFamiliesURL, {crossDomain: true}, {withCredentials: true})
     .then(response => this.handleHostFamilies(response.data.family))
+
+    axios.get(favoritesURL, {crossDomain: true}, {withCredentials: true})
+    .then(response => this.handleHostFamilies(response.data.favorite))
 }
 
 addListing = (newListing) => {
@@ -89,6 +99,24 @@ Logout = () =>{
   this.setState({ name: "", email: ""});
   console.log("Logout");
 }
+
+addFavorite = (favoriteAuPair) => {
+  if (!this.state.favorites.find(alreadyFavorite => favoriteAuPair === alreadyFavorite))
+  {
+    axios.post(favoritesURL, favoriteAuPair, {crossDomain: true}, {withCredentials: true})
+    .then(() => this.setState({favorites: [...this.state.favorites, favoriteAuPair] }))
+  }    
+}
+
+removeFromFavorites = (favoriteItem) => {
+
+  axios.delete(favoritesURL + '/' + favoriteItem.id)
+    .then( () => 
+      this.setState({favorites: this.state.favorites.filter(oldFavorite => oldFavorite !== favoriteItem)})
+    )
+
+}
+
 render(){
   return (
     <Router>
@@ -104,8 +132,13 @@ render(){
     <Route path="/host-families">
     <HostFamily hostFamilyData={this.state.hostFamilies}/>
     </Route>
+    <Route path="/Favorites">
+    <AuPairFavorites auPairData={this.state.aupairs} removeFromFavorites={this.removeFromFavorites} favoriteData={this.state.favorites} />
+    </Route>
     <Route path="/Au-pair">
-    <AuPair auPairData={this.state.aupairs}/>
+    <AuPair 
+    auPairData={this.state.aupairs} 
+    addFavorite={this.addFavorite}/>
     </Route>
     <Route path="/create-listing">
     <CreateListing 

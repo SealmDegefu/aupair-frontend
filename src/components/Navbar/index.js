@@ -19,9 +19,9 @@ const Navbar = () => {
 					<NavLink to="/Au-pair" activestyle>
 						Au Pair
 					</NavLink>
-					{/* <NavLink to="/create-listing" activestyle>
-						Create Listing
-					</NavLink> */}
+					<NavLink to="/Favorites" activestyle>
+						Favorites
+					</NavLink>
 					{/* <NavLink to="/sign-up" activestyle>
 						Sign Up
 					</NavLink> */}

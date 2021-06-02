@@ -48,6 +48,7 @@ class AuPairCard extends Component {
             </a>
           </button>
         </Link>
+        <button className="like-btn"onClick={()=>this.props.handleClick(this.auPair)}>Favorite ⭐️ </button>
       </div>
       </div>
       </div>
