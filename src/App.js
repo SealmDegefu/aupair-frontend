@@ -6,7 +6,8 @@ import HostFamily from './containers/HostFamily';
 import {
   BrowserRouter as Router,
   Switch,
-  Route
+  Route,
+  Link
 } from "react-router-dom";
 import Footer from './components/Footer';
 import About from './components/pages/About';
@@ -19,19 +20,25 @@ import axios from 'axios';
 
 const aupairsURL = "http://localhost:9292/Aupair";
 const hostFamiliesURL = "http://localhost:9292/Family";
+const listingURL = "http://localhost:9292/Listing"
 
 class App extends React.Component {
 
   state = {
     aupairs: [],
     hostFamilies: [],
-    listing: [],
+    listings: [],
     user: {
       name: "",
       email: ""
-    }
+    },
+    error: "",
   }
 
+   adminUser = {
+    email:"admin@admin.com",
+    password:"admin123"
+  }
 handleAuPairs = (auPairData) => {
   this.setState({
     aupairs: auPairData
@@ -44,10 +51,15 @@ handleHostFamilies = (hostFamilyData) => {
   })
 }
 
-Login = details => {
-  console.log(details)
+handleListing = (listingData) => {
+  this.setState({
+    listings: listingData
+  })
+}
 
-  if (details.email == this.adminUser.email && details.password == this.adminUser.password){
+Login = details => {
+ 
+ if (details.email == this.adminUser.email && details.password == this.adminUser.password){
     console.log("Logged in");
     this.setState({
       name: details.name,
@@ -55,7 +67,7 @@ Login = details => {
     });
   } else {
     console.log("Details do not match!");
-    this.setState("Details do not match!")
+    this.setState({error: "Details do not match!"})
   }
 }
 
@@ -65,12 +77,17 @@ componentDidMount = () => {
     
 
   axios.get(hostFamiliesURL, {crossDomain: true}, {withCredentials: true})
-    .then(response => this.handleHostFamilies(response.data.family))
+    .then(response => this.handleHostFamilies(response.data))
 }
 
 addListing = (newListing) => {
-    axios.post(aupairsURL, newListing )
-    .then(() => this.setState({aupairs: [...this.state.aupairs, newListing] }))
+    axios.post(listingURL, newListing )
+    .then(() => this.setState({listings: [...this.state.listings, newListing] }))
+}
+
+Logout = () =>{
+  this.setState({ name: "", email: ""});
+  console.log("Logout");
 }
 render(){
   return (
@@ -91,21 +108,26 @@ render(){
     <AuPair auPairData={this.state.aupairs}/>
     </Route>
     <Route path="/create-listing">
-    <CreateListing addListing={this.addListing}/>
+    <CreateListing 
+    addListing={this.addListing}
+    listing={this.state.listings}
+    />
     </Route>
-    {/* <Route path="/sign-up">
+    <Route path="/sign-up">
     <Signup />
-    </Route> */}
+    </Route>
     <Route path="/sign-in">
     <div className ="App">
-      {(this.state.user.email != "") ? (
+      {(this.state.email != "") ? (
           <div className="welcome">
-          <h2>Welcome, <span>{this.state.user.name}</span></h2>
-          <button onClick={this.Logout}>Logout</button>
+          <h2>Welcome, <span>{this.state.name}</span></h2>
+          <Link to='/'>
+          <button onClick={this.Logout}>Return to Home</button>
+          </Link>
           </div>
       ) : (
 
-      <LoginForm />
+      <LoginForm Login={this.Login} error={this.error} />
       )}
     </div>
     </Route>
