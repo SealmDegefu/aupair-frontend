@@ -3,13 +3,11 @@ import '../App.css';
 import { Button } from './Button';
 import './GetStarted.css';
 import { MdPlayCircleFilled } from 'react-icons/md';
-import Video from './Video'
+
 
 function GetStarted() {
 
-  const videoplayer = () => {
-    <Video />
-  }
+ 
   return (
     <div className='hero-container'>
       <h1>AU PAIR'd</h1>
@@ -26,7 +24,7 @@ function GetStarted() {
           className='btns'
           buttonStyle='btn--primary'
           buttonSize='btn--large'
-          onClick={() => videoplayer()}
+          onClick={() => console.log("works")}
         >
           WATCH TRAILER <MdPlayCircleFilled className="media"/>
         </Button>

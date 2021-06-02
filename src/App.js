@@ -24,7 +24,12 @@ class App extends React.Component {
 
   state = {
     aupairs: [],
-    hostFamilies: []
+    hostFamilies: [],
+    listing: [],
+    user: {
+      name: "",
+      email: ""
+    }
   }
 
 handleAuPairs = (auPairData) => {
@@ -88,20 +93,20 @@ render(){
     <Route path="/create-listing">
     <CreateListing addListing={this.addListing}/>
     </Route>
-    <Route path="/sign-up">
+    {/* <Route path="/sign-up">
     <Signup />
-    </Route>
+    </Route> */}
     <Route path="/sign-in">
     <div className ="App">
-      {/* {(this.state.user.email != "") ? (
+      {(this.state.user.email != "") ? (
           <div className="welcome">
           <h2>Welcome, <span>{this.state.user.name}</span></h2>
           <button onClick={this.Logout}>Logout</button>
           </div>
-      ) : ( */}
+      ) : (
 
       <LoginForm />
-      {/* )} */}
+      )}
     </div>
     </Route>
     </Switch>
