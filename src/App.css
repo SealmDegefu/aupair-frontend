@@ -32,3 +32,17 @@ body{
   left: 0;
   width: 100%;
 }
+
+.aupair_Collection{
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+}
+
+.aupair-card{
+  border: 5px solid white;
+  border-radius: 5%;
+  width: 25vw;
+  height: auto;
+  margin: 10px;
+}
