@@ -18,7 +18,7 @@ import axios from 'axios';
 
 
 const aupairsURL = "http://localhost:9292/Aupair";
-const hostFamiliesURL = "http://localhost:9292/hostFamily";
+const hostFamiliesURL = "http://localhost:9292/Family";
 
 class App extends React.Component {
 
@@ -60,7 +60,7 @@ componentDidMount = () => {
     
 
   axios.get(hostFamiliesURL, {crossDomain: true}, {withCredentials: true})
-    .then(response => this.handleHostFamilies(response.data))
+    .then(response => this.handleHostFamilies(response.data.family))
 }
 
 addListing = (newListing) => {
