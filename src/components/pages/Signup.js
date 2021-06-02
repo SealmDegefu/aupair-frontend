@@ -18,13 +18,13 @@ function Signup({ Login, error }) {
 				<h2 style={{textAlign: "center"}}>Register</h2>
 				{(error != "") ? (<div className="error">{error}</div>) : ""}
 				<div className="form-group">
-					<label htmlFor="name">First Name:</label>
+					<label htmlFor="name">Full Name:</label>
 					<input type="text" name="name" id="name" onChange={e => setDetails({...details, name: e.target.value})} value={details.name}/>
 				</div>
-				<div className="form-group">
+				{/* <div className="form-group">
 					<label htmlFor="name">Last Name:</label>
-					<input type="text" name="name" id="name" onChange={e => setDetails({...details, name: e.target.value})} value={details.name}/>
-				</div>
+					<input type="text" name="name" id="name" onChange={e => setDetails({...details, lastName: e.target.value})} value={details.name}/>
+				</div> */}
 				<div className="form-group">
 					<label htmlFor="email">Email: </label>
 					<input type="email" name="email" id="email" onChange={e => setDetails({...details, email: e.target.value})} value={details.email}/>

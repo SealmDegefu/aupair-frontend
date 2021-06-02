@@ -13,6 +13,7 @@ function GetStarted() {
       <h1>AU PAIR'd</h1>
       <p>Introducing families to great talent since 1990</p>
       <div className='hero-btns'>
+        <p>click below to create a profile</p>
         <Button
           className='btns'
           buttonStyle='btn--outline'
@@ -20,15 +21,10 @@ function GetStarted() {
         >
           GET STARTED
         </Button>
-        <Button
-          className='btns'
-          buttonStyle='btn--primary'
-          buttonSize='btn--large'
-          onClick={() => console.log("works")}
-        >
-          WATCH TRAILER <MdPlayCircleFilled className="media"/>
-        </Button>
       </div>
+      <div>
+       <p>Already have a profile? Click the Sign In button at the top of the page</p>
+       </div>
     </div>
   );
 }

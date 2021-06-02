@@ -77,7 +77,7 @@ componentDidMount = () => {
     
 
   axios.get(hostFamiliesURL, {crossDomain: true}, {withCredentials: true})
-    .then(response => this.handleHostFamilies(response.data))
+    .then(response => this.handleHostFamilies(response.data.family))
 }
 
 addListing = (newListing) => {

@@ -19,12 +19,12 @@ const Navbar = () => {
 					<NavLink to="/Au-pair" activestyle>
 						Au Pair
 					</NavLink>
-					<NavLink to="/create-listing" activestyle>
+					{/* <NavLink to="/create-listing" activestyle>
 						Create Listing
-					</NavLink>
-					<NavLink to="/sign-up" activestyle>
+					</NavLink> */}
+					{/* <NavLink to="/sign-up" activestyle>
 						Sign Up
-					</NavLink>
+					</NavLink> */}
 				</NavMenu>
 				<NavBtn>
 					<NavBtnLink to="/sign-in">Sign In</NavBtnLink>
