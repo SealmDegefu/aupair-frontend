@@ -20,7 +20,7 @@ const Navbar = () => {
 						Au Pair
 					</NavLink>
 					<NavLink to="/Favorites" activestyle>
-						Favorites
+						Favorite AuPairs
 					</NavLink>
 					{/* <NavLink to="/sign-up" activestyle>
 						Sign Up

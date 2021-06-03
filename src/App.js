@@ -91,7 +91,7 @@ componentDidMount = () => {
 }
 
 addListing = (newListing) => {
-    axios.post(listingURL, newListing )
+    axios.post(listingURL, newListing)
     .then(() => this.setState({listings: [...this.state.listings, newListing] }))
 }
 
@@ -100,22 +100,43 @@ Logout = () =>{
   console.log("Logout");
 }
 
-addFavorite = (favoriteAuPair) => {
-  if (!this.state.favorites.find(alreadyFavorite => favoriteAuPair === alreadyFavorite))
-  {
-    axios.post(favoritesURL, favoriteAuPair, {crossDomain: true}, {withCredentials: true})
-    .then(() => this.setState({favorites: [...this.state.favorites, favoriteAuPair] }))
-  }    
-}
+// newFav=this.state.aupairs.id
 
-removeFromFavorites = (favoriteItem) => {
+addFavorite = (newFav) => {
+  console.log(newFav)
+  let postOption = {
+    method: "POST",
+    headers: {
+      "Content-Type": 'application/json',
+      Accepts: 'application/json'
+    },
+    body: JSON.stringify(newFav)
+  }
+  console.log(postOption)
 
-  axios.delete(favoritesURL + '/' + favoriteItem.id)
-    .then( () => 
-      this.setState({favorites: this.state.favorites.filter(oldFavorite => oldFavorite !== favoriteItem)})
-    )
+ fetch(favoritesURL, postOption, {crossDomain: true}, {withCredentials: true})
+      .then(res => res.json())
+      .then(this.setState({ favorites: [...this.state.favorites, newFav] }))
+  }
 
-}
+// addFavorite = (favoriteAuPair) => {
+//   if (!this.state.favorites.find(alreadyFavorite => favoriteAuPair === alreadyFavorite))
+//   {
+//     axios.post(favoritesURL, favoriteAuPair,{crossDomain: true}, 
+//       {withCredentials: true})
+//     .then(() => this.setState({favorites: [...this.state.favorites, favoriteAuPair] }))
+//   }    
+// }
+
+
+// removeFromFavorites = (favoriteItem) => {
+
+//   axios.delete(favoritesURL + '/' + favoriteItem.id)
+//     .then( () => 
+//       this.setState({favorites: this.state.favorites.filter(oldFavorite => oldFavorite !== favoriteItem)})
+//     )
+
+// }
 
 render(){
   return (

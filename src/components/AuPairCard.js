@@ -27,7 +27,7 @@ class AuPairCard extends Component {
   ]
     render() {
     return (
-      <div className="aupair-card" id={this.props.auPair.id}>
+      <div className="aupair-card" key={this.props.auPair.id}>
         <div className="image-container">
         <img src={`${this.aupairArray[Math.floor(Math.random()*this.aupairArray.length)]}`}></img>
       </div>
@@ -48,7 +48,7 @@ class AuPairCard extends Component {
             </a>
           </button>
         </Link>
-        <button className="like-btn"onClick={()=>this.props.handleClick(this.auPair)}>Favorite ⭐️ </button>
+        <button className="like-btn"onClick={()=>this.props.handleClick(this.props.auPair)}>Favorite ⭐️ </button>
       </div>
       </div>
       </div>

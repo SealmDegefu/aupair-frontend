@@ -6,7 +6,7 @@ const AuPairFavorites = (props) => {
   
     return(
       
-        <div className="aupair_Collection">
+        <div className="aupair_Favorites">
            {props.favoriteData.map(auPair => {
             return <AuPairCard
             auPair ={auPair}
