@@ -37,11 +37,11 @@ class App extends React.Component {
     },
     error: "",
   }
-
    adminUser = {
     email:"admin@admin.com",
     password:"admin123"
   }
+
 handleAuPairs = (auPairData) => {
   this.setState({
     aupairs: auPairData
@@ -59,11 +59,23 @@ handleListing = (listingData) => {
     listings: listingData
   })
 }
-handleFavoritesData = (favoritesData) => {
-  this.setState({
-    favorites: favoritesData
+
+
+
+handleFavoritesData = (data) => {
+  let collection=[]
+  data.map ((favorite)  => {
+    let x = favorite.aupair
+    collection.push(x)
+  
   })
-}
+  
+  console.log(collection)
+this.setState({
+  favorites: collection
+})}
+
+
 Login = details => {
  
  if (details.email == this.adminUser.email && details.password == this.adminUser.password){
@@ -86,8 +98,9 @@ componentDidMount = () => {
   axios.get(hostFamiliesURL, {crossDomain: true}, {withCredentials: true})
     .then(response => this.handleHostFamilies(response.data.family))
 
+    
     axios.get(favoritesURL, {crossDomain: true}, {withCredentials: true})
-    .then(response => this.handleHostFamilies(response.data.favorite))
+    .then(response => this.handleFavoritesData(response.data.favorite))
 }
 
 addListing = (newListing) => {
@@ -103,7 +116,7 @@ Logout = () =>{
 // newFav=this.state.aupairs.id
 
 addFavorite = (newFav) => {
-  console.log(newFav)
+  //console.log(newFav)
   let postOption = {
     method: "POST",
     headers: {
