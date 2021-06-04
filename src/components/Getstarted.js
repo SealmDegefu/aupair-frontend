@@ -16,7 +16,7 @@ function GetStarted() {
       <h1>AU PAIR'd</h1>
       <p>Introducing families to great talent since 1990</p>
       <div className='hero-btns'>
-      <Link to='/create-listing'>
+      <Link to='/sign-up'>
         <Button
           className='btns'
           buttonStyle='btn--outline'
